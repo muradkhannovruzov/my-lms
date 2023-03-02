@@ -1,26 +1,20 @@
 package com.example.mylms.domain;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-
 @Data
 @Entity
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Semester {
+public class RoomType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private LocalDate beginDate;
-    private LocalDate endDate;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    private EduYear eduYear;
 }

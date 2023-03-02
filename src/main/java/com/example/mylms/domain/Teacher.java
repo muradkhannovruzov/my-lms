@@ -1,5 +1,6 @@
 package com.example.mylms.domain;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,14 +14,14 @@ import java.time.LocalDate;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Semester {
+public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private LocalDate beginDate;
-    private LocalDate endDate;
+    private String surname;
+    @Column(nullable = false, unique = true)
+    private String pin;
+    private LocalDate birthDate;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private EduYear eduYear;
 }
