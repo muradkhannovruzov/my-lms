@@ -17,13 +17,13 @@ public class SubjectGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @ManyToOne(fetch = FetchType.EAGER)
     private Semester semester;
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Subject subject;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-            name = "subjectGroup_students",
+            name = "subjGroup_students",
             joinColumns = {@JoinColumn(name = "subj_group_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "student_id", referencedColumnName = "id")}
     )
