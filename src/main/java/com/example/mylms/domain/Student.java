@@ -19,6 +19,8 @@ public class Student {
     private Long id;
     private String name;
     private String surname;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Faculty faculty;
     @Column(nullable = false, unique = true)
     private String pin;
     private LocalDate birthDate;
