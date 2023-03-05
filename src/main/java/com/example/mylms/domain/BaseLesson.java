@@ -22,6 +22,8 @@ public class BaseLesson {
     @ManyToOne(fetch = FetchType.LAZY)
     private Teacher teacher;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    List<Lesson> lessons;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private LessonType lessonType;
+    @OneToMany(mappedBy = "baseLesson")
+    private List<Lesson> lessons;
 }

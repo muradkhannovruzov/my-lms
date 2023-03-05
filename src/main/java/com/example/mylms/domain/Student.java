@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -24,5 +26,6 @@ public class Student {
     @Column(nullable = false, unique = true)
     private String pin;
     private LocalDate birthDate;
-
+    @ManyToMany(mappedBy = "students", fetch = FetchType.LAZY)
+    private List<SubjectGroup> subjectGroupList = new ArrayList<>();
 }

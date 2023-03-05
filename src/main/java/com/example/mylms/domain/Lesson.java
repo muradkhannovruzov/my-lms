@@ -13,6 +13,7 @@ import java.time.LocalTime;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "lesson")
 public class Lesson {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +24,7 @@ public class Lesson {
     private LocalTime endTime;
 
     @ManyToOne
+    @JoinColumn(name = "base_lesson_id")
     private BaseLesson baseLesson;
 
     @ManyToOne(fetch = FetchType.EAGER)

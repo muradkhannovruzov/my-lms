@@ -19,6 +19,8 @@ public class SubjectGroup {
     private Long id;
     @ManyToOne(fetch = FetchType.EAGER)
     private Semester semester;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Faculty faculty;
     @ManyToOne(fetch = FetchType.LAZY)
     private Subject subject;
     @ManyToMany(fetch = FetchType.LAZY)
