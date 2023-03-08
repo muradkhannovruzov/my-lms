@@ -5,6 +5,7 @@ import com.example.mylms.dto.SignUpDto;
 import com.example.mylms.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,8 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> signIn(
             @RequestBody SignInDto dto
     ){
+//        if(1 == 1)
+//            throw new UsernameNotFoundException("Username not found");
         return ResponseEntity.ok(authService.signIn(dto));
     }
 
