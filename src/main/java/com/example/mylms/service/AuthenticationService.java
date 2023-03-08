@@ -6,7 +6,10 @@ import com.example.mylms.domain.User;
 import com.example.mylms.dto.SignInDto;
 import com.example.mylms.dto.SignUpDto;
 import com.example.mylms.repository.UserRepository;
+import com.example.mylms.security.JwtService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +19,8 @@ public class AuthenticationService {
 
     private final UserRepository repository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
+    private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse signUp(SignUpDto dto) {
         var user = User.builder()
@@ -25,10 +30,28 @@ public class AuthenticationService {
                 .password(passwordEncoder.encode(dto.getPassword()))
                 .role(Role.USER)
                 .build();
-        return null;
+
+        repository.save(user);
+        return createAuthenticationResponse(user);
     }
 
     public AuthenticationResponse signIn(SignInDto dto) {
-        return null;
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        dto.getEmail(),
+                        dto.getPassword()
+                )
+        );
+
+        var user = repository.findByUsername(dto.getEmail())
+                .orElseThrow();
+        return createAuthenticationResponse(user);
+    }
+
+    private AuthenticationResponse createAuthenticationResponse(User user) {
+        var jwtToken = jwtService.generateToken(user);
+        return AuthenticationResponse.builder()
+                .token(jwtToken)
+                .build();
     }
 }
