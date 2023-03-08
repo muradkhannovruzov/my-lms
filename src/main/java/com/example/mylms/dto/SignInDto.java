@@ -1,14 +1,15 @@
 package com.example.mylms.dto;
 
-
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
+@Builder
 @NoArgsConstructor
-public class AuthenticationRequest {
+@AllArgsConstructor
+public class SignInDto {
     private String email;
     private String password;
 }
