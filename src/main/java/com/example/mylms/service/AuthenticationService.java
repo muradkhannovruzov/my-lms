@@ -10,6 +10,7 @@ import com.example.mylms.security.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -44,7 +45,7 @@ public class AuthenticationService {
         );
 
         var user = repository.findByUsername(dto.getEmail())
-                .orElseThrow();
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
         return createAuthenticationResponse(user);
     }
 
