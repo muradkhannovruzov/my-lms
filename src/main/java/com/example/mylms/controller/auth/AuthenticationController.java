@@ -1,11 +1,10 @@
 package com.example.mylms.controller.auth;
 
-import com.example.mylms.dto.SignInDto;
-import com.example.mylms.dto.SignUpDto;
+import com.example.mylms.dto.auth.SignInDto;
+import com.example.mylms.dto.auth.SignUpDto;
 import com.example.mylms.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
