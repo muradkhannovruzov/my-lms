@@ -6,7 +6,6 @@ function App() {
     <div className="App">
         <div className='AppGlass'>
           <Sidebar/>
-        
         </div>
     </div>
   );

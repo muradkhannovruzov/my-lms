@@ -1,4 +1,3 @@
-
 // Sidebar imports
 import {
     UilEstate,
@@ -9,7 +8,7 @@ import {
     UilSignOutAlt,
   } from "@iconscout/react-unicons";
 
-  // Sidebar Data
+// Sidebar Data
 export const SidebarData = [
     {
       icon: UilEstate,
