@@ -1,5 +1,6 @@
 import React from 'react'
 import Cards from '../Cards/Cards'
+import Table from '../Table/Table'
 import './MainDash.css'
 
 const MainDash = () => {
@@ -7,6 +8,8 @@ const MainDash = () => {
     <div className="MainDash">
       <h1>Dashboard</h1>
       <Cards/>
+      <h2>Recent Order</h2>
+      <Table/>
     </div>
   )
 }
