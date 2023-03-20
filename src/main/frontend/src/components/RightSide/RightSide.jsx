@@ -1,4 +1,5 @@
 import React from 'react'
+import CustomerReview from '../CustomerReview/CustomerReview'
 import Updates from '../Updates/Updates'
 import './RightSide.css'
 
@@ -12,6 +13,7 @@ const RightSide = () => {
         
         <div>
             <h3>Customer Review</h3>
+            <CustomerReview/>
         </div>
     </div>
 
