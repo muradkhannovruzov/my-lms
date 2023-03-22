@@ -1,17 +1,38 @@
-import './App.css'
-import Sidebar from './components/Sidebar/Sidebar';
-import MainDash from './components/MainDash/MainDash';
-import RightSide from './components/RightSide/RightSide';
+import React, { useState } from 'react';
+import Login from './components/Login/Login';
+import Dashboard from './components/Dashboard';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import axios from 'axios';
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const handleLogin = async (email, password) => {
+    try {
+      const response = await axios.post('http://your-api-url/login', { email, password });
+      localStorage.setItem('token', response.data.token);
+      setLoggedIn(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setLoggedIn(false);
+  };
+
   return (
-    <div className="App">
-        <div className='AppGlass'>
-          <Sidebar/>
-          <MainDash/>
-          <RightSide/>
-        </div>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          {loggedIn ? <Redirect to="/dashboard" /> : <Login onLogin={handleLogin} />}
+        </Route>
+        <Route path="/dashboard">
+          {!loggedIn ? <Redirect to="/" /> : <Dashboard onLogout={handleLogout} />}
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
