@@ -57,7 +57,7 @@ const Sidebar = () => {
           })}
 
           <div className="menuItem">
-            <UilSignOutAlt />
+            <UilSignOutAlt onClick/>
           </div>
         </div>
       </motion.div>

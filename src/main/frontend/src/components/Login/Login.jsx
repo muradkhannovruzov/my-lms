@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { setAccessToken } from '../../utils/auth';
+
+import './Login.css'
 
 const Login = () => {
   const history = useNavigate();
@@ -12,7 +15,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post("your-auth-api-url", { email, password });
-      localStorage.setItem("token", response.data.token); // store JWT in local storage
+      setAccessToken("token", response.data.token); // store JWT in local storage
       history.push("/dashboard"); // redirect to dashboard page
     } catch (err) {
       setError("Invalid email or password"); // set error message
