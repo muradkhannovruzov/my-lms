@@ -5,7 +5,6 @@ import {
     UilUsersAlt,
     UilPackage,
     UilChart,
-    UilSignOutAlt,
   } from "@iconscout/react-unicons";
 
 
@@ -16,7 +15,6 @@ import img3 from "../imgs/img3.png";
 
 // Analytics Cards imports
 import { UilUsdSquare, UilMoneyWithdrawal } from "@iconscout/react-unicons";
-import { keyboard } from "@testing-library/user-event/dist/keyboard";
 
 // Sidebar Data
 export const SidebarData = [

@@ -31,7 +31,7 @@ const Login = () => {
           <label>Password</label>
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </div>
-        {error && <p>{error}</p>} // display error message if any
+        {error && <p>{error}</p>}
         <button type="submit">Login</button>
       </form>
     </div>

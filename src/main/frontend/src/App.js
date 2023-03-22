@@ -1,37 +1,36 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './components/Login/Login';
 import Dashboard from './components/Dashboard';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import axios from 'axios';
+import { getAccessToken, removeAccessToken } from './utils/auth';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
-  const handleLogin = async (email, password) => {
-    try {
-      const response = await axios.post('http://your-api-url/login', { email, password });
-      localStorage.setItem('token', response.data.token);
+  useEffect(() => {
+    const token = getAccessToken();
+    if (token) {
       setLoggedIn(true);
-    } catch (error) {
-      console.error(error);
+    } else {
+      setLoggedIn(false);
     }
+  }, []);
+
+  const handleLogin = () => {
+    setLoggedIn(true);
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    removeAccessToken();
     setLoggedIn(false);
   };
 
   return (
     <Router>
-      <Switch>
-        <Route exact path="/">
-          {loggedIn ? <Redirect to="/dashboard" /> : <Login onLogin={handleLogin} />}
-        </Route>
-        <Route path="/dashboard">
-          {!loggedIn ? <Redirect to="/" /> : <Dashboard onLogout={handleLogout} />}
-        </Route>
-      </Switch>
+      <Routes>
+        <Route path="/login" element={loggedIn ? <Navigate to="/dashboard" /> : <Login onLogin={handleLogin} />} />
+        <Route path="/dashboard" element={loggedIn ? <Dashboard onLogout={handleLogout} /> : <Navigate to="/login" />} />
+      </Routes>
     </Router>
   );
 }
