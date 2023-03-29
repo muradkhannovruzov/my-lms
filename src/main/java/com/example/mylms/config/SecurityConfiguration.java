@@ -28,7 +28,7 @@ public class SecurityConfiguration {
                 .requestMatchers("/api/v1/auth/sign-in")
                     .permitAll()
                 .requestMatchers("/api/v1/auth/sign-up")
-                    .hasRole("ROLE_ADMIN")
+                    .permitAll()
                 .anyRequest()
                     .authenticated()
                 .and()

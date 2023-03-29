@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { setAccessToken } from '../../utils/auth';
+import { setAccessToken } from "../../utils/auth";
 
-import './Login.css'
+import "./login.css";
 
 const Login = () => {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -14,10 +14,18 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("your-auth-api-url", { email, password });
-      setAccessToken("token", response.data.token); // store JWT in local storage
-      history.push("/dashboard"); // redirect to dashboard page
+      const response = await axios.post(
+        "http://localhost:8080/api/v1/auth/sign-in",
+        {
+          email,
+          password,
+        }
+      );
+      console.log(response);
+      setAccessToken(response.data.token); // store JWT in local storage
+      navigate('/home'); // redirect to dashboard page
     } catch (err) {
+      console.error(err);
       setError("Invalid email or password"); // set error message
     }
   };
@@ -28,11 +36,21 @@ const Login = () => {
       <form onSubmit={handleSubmit}>
         <div>
           <label>Email</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
         </div>
         <div>
           <label>Password</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
         </div>
         {error && <p>{error}</p>}
         <button type="submit">Login</button>

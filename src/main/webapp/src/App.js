@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Login from './components/Login/Login';
-import Dashboard from './components/Dashboard';
+import Login from './pages/login/Login';
+import Home from './pages/home/Home'
 import { getAccessToken, removeAccessToken } from './utils/auth';
 
 function App() {
@@ -28,8 +28,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={loggedIn ? <Navigate to="/dashboard" /> : <Login onLogin={handleLogin} />} />
-        <Route path="/dashboard" element={loggedIn ? <Dashboard onLogout={handleLogout} /> : <Navigate to="/login" />} />
+        <Route path="/login" element={loggedIn ? <Navigate to="/home" /> : <Login onLogin={handleLogin} />} />
+        <Route path="/home" element={loggedIn ? <Home onLogout={handleLogout} /> : <Navigate to="/login" />} />
       </Routes>
     </Router>
   );
