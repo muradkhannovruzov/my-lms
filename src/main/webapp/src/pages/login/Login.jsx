@@ -23,7 +23,7 @@ const Login = () => {
       );
       console.log(response);
       setAccessToken(response.data.token); // store JWT in local storage
-      navigate('/home'); // redirect to dashboard page
+      navigate("/home"); // redirect to dashboard page
     } catch (err) {
       console.error(err);
       setError("Invalid email or password"); // set error message

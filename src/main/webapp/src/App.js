@@ -17,10 +17,12 @@ function App() {
   }, []);
 
   const handleLogin = () => {
+    alert(11);
     setLoggedIn(true);
   };
 
   const handleLogout = () => {
+    alert(12);
     removeAccessToken();
     setLoggedIn(false);
   };
