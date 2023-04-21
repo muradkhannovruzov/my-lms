@@ -31,29 +31,31 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email</label>
+    <div id="login-container">
+      <h2 id="login-title">Login</h2>
+      <form id="login-form" onSubmit={handleSubmit}>
+        <div className="input-group">
+          <label htmlFor="email-input">Email</label>
           <input
             type="email"
+            id="email-input"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
-        <div>
-          <label>Password</label>
+        <div className="input-group">
+          <label htmlFor="password-input">Password</label>
           <input
             type="password"
+            id="password-input"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
-        {error && <p>{error}</p>}
-        <button type="submit">Login</button>
+        {error && <p id="error-message">{error}</p>}
+        <button id="login-button" type="submit">Login</button>
       </form>
     </div>
   );

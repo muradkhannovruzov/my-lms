@@ -1,7 +1,8 @@
 import React from 'react'
-import CustomerReview from '../CustomerReview/CustomerReview'
-import Updates from '../Updates/Updates'
-import './RightSide.css'
+import CustomerReview from '../customerReview/CustomerReview'
+import Updates from '../updates/Updates'
+import './rightSIde.css'
+
 
 const RightSide = () => {
   return (

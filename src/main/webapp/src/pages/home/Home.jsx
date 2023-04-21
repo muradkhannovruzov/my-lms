@@ -1,20 +1,20 @@
 import React from 'react'
-import './Dashboard.css'
+import './home.css'
 
-import Sidebar from './Sidebar/Sidebar'
-import MainDash from './MainDash/MainDash'
-import RightSide from './RightSide/RightSide'
+import Sidebar from '../../components/sidebar/Sidebar'
+import MainDash from '../../components/mainDash/MainDash'
+import RightSide from '../../components/rightSide/RightSide'
 
-const Dashboard = () => {
+const Home = () => {
   return (
     <div className="App">
         <div className='AppGlass'>
           <Sidebar/>
-          <MainDash/>
+          <MainDash/> 
           <RightSide/>
         </div>
     </div>
   )
 }
 
-export default Dashboard
+export default Home
