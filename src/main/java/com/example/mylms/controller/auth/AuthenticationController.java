@@ -27,8 +27,6 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> signIn(
             @RequestBody SignInDto dto
     ){
-//        if(1 == 1)
-//            throw new UsernameNotFoundException("Username not found");
         return ResponseEntity.ok(authService.signIn(dto));
     }
 

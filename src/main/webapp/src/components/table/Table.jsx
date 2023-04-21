@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useEffect, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -6,57 +7,46 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import './table.css';
+import "./table.css";
 
-function createData(name, trackingId, date, status) {
-  return { name, trackingId, date, status };
+function createData(id, surname, name, pin) {
+  return { id, surname, name, pin };
 }
 
-const rows = [
-  createData("Lasania Chiken Fri", 18908424, "2 March 2022", "Approved"),
-  createData("Big Baza Bang ", 18908424, "2 March 2022", "Pending"),
-  createData("Mouth Freshner", 18908424, "2 March 2022", "Approved"),
-  createData("Cupcake", 18908421, "2 March 2022", "Delivered"),
-];
-
-const makeStyle=(status)=>{
-  if(status === 'Approved')
-  {
-    return {
-      background: 'rgb(145 254 159 / 47%)',
-      color: 'green',
-    }
-  }
-  else if(status === 'Pending')
-  {
-    return{
-      background: '#ffadad8f',
-      color: 'red',
-    }
-  }
-  else{
-    return{
-      background: '#59bfff',
-      color: 'white',
-    }
-  }
-}
+const rows = [];
 
 export default function BasicTable() {
+  const [rows, setRows] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("");
+      const data = await response.json();
+
+      const formattedData = data.map((item) =>
+        createData(item.name, item.trackingId, item.date, item.status)
+      );
+      setRows(formattedData);
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <div className="Table">
-      <h3>Recent Orders</h3>
-      
-      <TableContainer component={Paper}
-      style={{boxShadow: '0px 13px 20px 0px #80808029'}}
+      <h3>Teachers</h3>
+
+      <TableContainer
+        component={Paper}
+        style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
       >
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>Product</TableCell>
-              <TableCell align="left">Tracking ID</TableCell>
-              <TableCell align="left">Date</TableCell>
-              <TableCell align="left">Status</TableCell>
+              <TableCell align="left">Surname</TableCell>
+              <TableCell align="left">Name</TableCell>
+              <TableCell align="left">Pin</TableCell>
               <TableCell align="left"></TableCell>
             </TableRow>
           </TableHead>
@@ -71,10 +61,9 @@ export default function BasicTable() {
                 </TableCell>
                 <TableCell align="left">{row.trackingId}</TableCell>
                 <TableCell align="left">{row.date}</TableCell>
-                <TableCell align="left">
-                  <span className="status" style={makeStyle(row.status)}>{row.status}</span>
+                <TableCell align="left" className="Details">
+                  Detail
                 </TableCell>
-                <TableCell align="left" className="Details">Detail</TableCell>
               </TableRow>
             ))}
           </TableBody>
