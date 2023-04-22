@@ -10,8 +10,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TeacherResponseDto {
+    private Long id;
     private String name;
     private String surname;
     private String pin;
-    private LocalDate birthDate;
 }

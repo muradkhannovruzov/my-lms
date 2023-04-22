@@ -26,4 +26,8 @@ public class BaseLesson {
     private LessonType lessonType;
     @OneToMany(mappedBy = "baseLesson")
     private List<Lesson> lessons;
+
+    @ManyToOne
+    @JoinColumn(name = "subject_group_id")
+    private SubjectGroup subjectGroup;
 }

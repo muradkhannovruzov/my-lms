@@ -30,4 +30,7 @@ public class SubjectGroup {
             inverseJoinColumns = {@JoinColumn(name = "student_id", referencedColumnName = "id")}
     )
     private List<Student> students;
+
+    @OneToMany(mappedBy = "subjectGroup")
+    private List<BaseLesson> baseLessons;
 }
