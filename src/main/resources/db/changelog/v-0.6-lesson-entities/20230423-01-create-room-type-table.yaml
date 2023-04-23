@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: 01-create-room-type-table
+      author: muradxan
+      changes:
+        - createTable:
+            tableName: room_type
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(255)

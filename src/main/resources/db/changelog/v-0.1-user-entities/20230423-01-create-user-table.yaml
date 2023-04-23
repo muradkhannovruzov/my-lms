@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: 01-create-user-table
+      author: muradxan
+      changes:
+        - createTable:
+            tableName: user
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(255)
+              - column:
+                  name: password
+                  type: varchar(255)
+              - column:
+                  name: role
+                  type: varchar(255)
+              - column:
+                  name: surname
+                  type: varchar(255)
+              - column:
+                  name: username
+                  type: varchar(255)

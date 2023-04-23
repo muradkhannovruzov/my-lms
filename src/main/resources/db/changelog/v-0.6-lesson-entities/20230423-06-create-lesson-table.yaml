@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: 06-create-lesson-table
+      author: muradxan
+      changes:
+        - createTable:
+            tableName: lesson
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: date
+                  type: DATE
+                  constraints:
+                    nullable: true
+              - column:
+                  name: end_time
+                  type: TIME
+                  constraints:
+                    nullable: true
+              - column:
+                  name: start_time
+                  type: TIME
+                  constraints:
+                    nullable: true
+              - column:
+                  name: base_lesson_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+                    foreignKeyName: FKhno6m4bp4j1ux06xijspsbx7d
+                    references:
+                      tableName: base_lesson
+                      columnName: id
+              - column:
+                  name: room_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+                    foreignKeyName: FKroaoqrfv6vmoyaeptqadt4n6y
+                    references:
+                      tableName: room
+                      columnName: id

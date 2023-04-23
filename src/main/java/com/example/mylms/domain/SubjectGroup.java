@@ -25,7 +25,7 @@ public class SubjectGroup {
     private Subject subject;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-            name = "subjGroup_students",
+            name = "subjGroup_student",
             joinColumns = {@JoinColumn(name = "subj_group_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "student_id", referencedColumnName = "id")}
     )

@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: 05-create-base-lesson-table
+      author: muradxan
+      changes:
+        - createTable:
+            tableName: base_lesson
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: lesson_type_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+                    foreignKeyName: FKe60repykisb577ef5d8n3lrje
+                    references:
+                      tableName: lesson_type
+                      columnName: id
+              - column:
+                  name: subject_group_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+                    foreignKeyName: FKnospia0bmdt1amyj2tqwvsubu
+                    references:
+                      tableName: subject_group
+                      columnName: id
+              - column:
+                  name: teacher_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+                    foreignKeyName: FK7efcw9c1nrhmvtjw7ogfqghqb
+                    references:
+                      tableName: teacher
+                      columnName: id

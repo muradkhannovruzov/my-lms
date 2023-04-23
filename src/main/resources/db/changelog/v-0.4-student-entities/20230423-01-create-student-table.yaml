@@ -1,0 +1,49 @@
+databaseChangeLog:
+  - changeSet:
+      id: 01-create-student-table
+      author: muradxan
+      changes:
+        - createTable:
+            tableName: student
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: birth_date
+                  type: DATE
+                  constraints:
+                    nullable: true
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pin
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: surname
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: faculty_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+                    foreignKeyName: FK6geq7tnjed7u4hvgv1ac6lyh
+                    references:
+                      tableName: faculty
+                      columnName: id
+            constraints:
+              - uniqueConstraint:
+                  constraintName: UK_6qhb04kwx2xj53st3hqfv0tj9
+                  columnNames:
+                    - pin

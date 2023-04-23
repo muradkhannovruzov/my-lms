@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: 03-create-subject-table
+      author: muradxan
+      changes:
+        - createTable:
+            tableName: subject
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: code
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: credit
+                  type: INTEGER
+                  constraints:
+                    nullable: true
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true

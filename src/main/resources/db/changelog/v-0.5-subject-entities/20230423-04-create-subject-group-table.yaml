@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: 04-create-subject-group-table
+      author: muradxan
+      changes:
+        - createTable:
+            tableName: subject_group
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: faculty_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+                    foreignKeyName: FKcwmknwvkikgd3xbufwyqvbopv
+                    references:
+                      tableName: faculty
+                      columnName: id
+              - column:
+                  name: semester_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+                    foreignKeyName: FKjhyu1vjda7ax5w12n38ghccmc
+                    references:
+                      tableName: semester
+                      columnName: id
+              - column:
+                  name: subject_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+                    foreignKeyName: FK6xmk79mni0ym06e6wsiycs7hi
+                    references:
+                      tableName: subject
+                      columnName: id

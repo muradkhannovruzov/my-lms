@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: 05-create-subj-group-student-table
+      author: muradxan
+      changes:
+        - createTable:
+            tableName: subj_group_student
+            columns:
+              - column:
+                  name: subj_group_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: FKkee8i046vydvnadj7fhp085e5
+                    references:
+                      tableName: subject_group
+                      columnName: id
+              - column:
+                  name: student_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: FKndcls6jkajioyouujik7v68c3
+                    references:
+                      tableName: student
+                      columnName: id
+            constraints:
+              - primaryKey:
+                  columnNames:
+                    - subj_group_id
+                    - student_id

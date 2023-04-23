@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: 02-create-semester-table
+      author: muradxan
+      changes:
+        - createTable:
+            tableName: semester
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: begin_date
+                  type: DATE
+                  constraints:
+                    nullable: true
+              - column:
+                  name: end_date
+                  type: DATE
+                  constraints:
+                    nullable: true
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: edu_year_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+                    foreignKeyName: FKq4xhr4tnaujog2exqothns2bx
+                    references:
+                      tableName: edu_year
+                      columnName: id

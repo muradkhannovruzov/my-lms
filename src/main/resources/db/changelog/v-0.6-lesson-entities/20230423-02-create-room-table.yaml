@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: 02-create-room-table
+      author: muradxan
+      changes:
+        - createTable:
+            tableName: room
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: room_type_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+                    foreignKeyName: FKd468eq7j1cbue8mk20qfrj5et
+                    references:
+                      tableName: room_type
+                      columnName: id
