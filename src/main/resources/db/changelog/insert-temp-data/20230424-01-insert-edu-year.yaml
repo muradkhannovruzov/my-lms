@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: 01-insert-edu-year
+      author: muradxan
+      preConditions:
+        onFail: MARK_RAN
+        not:
+          sqlCheck:
+            expectedResult: 0
+            sql: SELECT COUNT(*) FROM edu_year
+      changes:
+        - insert:
+            tableName: edu_year
+            columns:
+              - column:
+                  name: begin_date
+                  valueDate: "2021-09-15"
+              - column:
+                  name: end_date
+                  valueDate: "2022-06-30"
+              - column:
+                  name: year
+                  value: "2021-2022"
