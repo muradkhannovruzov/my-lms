@@ -5,6 +5,10 @@
   .MuiTableRow-root.MuiTableRow-head > * {
     font-weight: bold !important;
   }
+
+  .Details {
+    cursor: pointer;
+  }
   
   .Table td,
   th {

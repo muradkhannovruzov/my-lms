@@ -13,7 +13,7 @@ const RightSide = () => {
         </div>
         
         <div>
-            <h3>Customer Review</h3>
+            <h3>Teacher weekly lesson count</h3>
             <CustomerReview/>
         </div>
     </div>
