@@ -1,10 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import App from './App';
+import { AuthProvider } from './contexts/AuthProvider';
+import ChartDataProvider from './contexts/ChartDataProvider';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ReactDOM.render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <AuthProvider>
+      <ChartDataProvider>
+        <App />
+      </ChartDataProvider>
+    </AuthProvider>
+  </React.StrictMode>,
+  document.getElementById('root')
 );

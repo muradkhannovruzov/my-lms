@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { setAccessToken } from "../../utils/auth";
+import AuthContext from '../../contexts/AuthContext';
 
 import "./login.css";
 
 const Login = () => {
   const navigate = useNavigate();
+  const auth = useContext(AuthContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -22,11 +25,13 @@ const Login = () => {
         }
       );
       console.log(response);
-      setAccessToken(response.data.token); // store JWT in local storage
-      navigate("/home"); // redirect to dashboard page
+      setAccessToken(response.data.token);
+      auth.login();
+      navigate("/home");
     } catch (err) {
       console.error(err);
-      setError("Invalid email or password"); // set error message
+      auth.logout();
+      setError("Invalid email or password");
     }
   };
 

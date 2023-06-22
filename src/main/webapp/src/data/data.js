@@ -22,22 +22,22 @@ export const SidebarData = [
     icon: UilEstate,
     heading: "Dashboard",
   },
-  {
-    icon: UilClipboardAlt,
-    heading: "Subject Groups",
-  },
-  {
-    icon: UilUsersAlt,
-    heading: "Students",
-  },
-  {
-    icon: UilUserSquare,
-    heading: "Teachers",
-  },
-  {
-    icon: UilChart,
-    heading: "Rooms",
-  },
+  // {
+  //   icon: UilClipboardAlt,
+  //   heading: "Subject Groups",
+  // },
+  // {
+  //   icon: UilUsersAlt,
+  //   heading: "Students",
+  // },
+  // {
+  //   icon: UilUserSquare,
+  //   heading: "Teachers",
+  // },
+  // {
+  //   icon: UilChart,
+  //   heading: "Rooms",
+  // },
 ];
 
 // Analytics Cards Data

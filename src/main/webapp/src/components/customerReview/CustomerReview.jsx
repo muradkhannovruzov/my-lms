@@ -1,20 +1,13 @@
 import React, { useEffect, useState, useContext } from "react";
 import Chart from "react-apexcharts";
-import { ChartDataContext } from "../../utils/chartDataContext";
+import ChartDataContext from "../../contexts/ChartDataContext";
 
 const CustomerReview = () => {
-  const chartDataContext = useContext(ChartDataContext);
-  let chartData = null;
-  
-  const [seriesData, setSeriesData] = useState([1, 3, 0, 5, 2, 0, 0]); // Initialize your state with default data
+  const { chartData } = useContext(ChartDataContext);
 
-  if (chartDataContext !== undefined) {
-    chartData = chartDataContext.chartData;
-  }
+  const [seriesData, setSeriesData] = useState([1, 3, 0, 5, 2, 0, 0]);
 
-  // Update your chart data whenever chartData changes
   useEffect(() => {
-    console.log(chartData);
     if(chartData) {
       const counts = chartData.map(item => item.count);
       setSeriesData(counts);
@@ -25,7 +18,7 @@ const CustomerReview = () => {
     series: [
       {
         name: "Lesson",
-        data: seriesData, // If chartData is null, use the default array.
+        data: seriesData,
       },
     ],
     options: {
@@ -33,15 +26,14 @@ const CustomerReview = () => {
         type: "bar",
         height: "auto",
       },
-
       fill: {
-        colors: ["#00CED1"], // change this to control the color of the bars
-        type: "gradient", // change this to 'solid' for solid color bars, or 'gradient' for gradient color bars
+        colors: ["#00CED1"],
+        type: "gradient",
         gradient: {
-          shade: "light", // this can be 'light' or 'dark' to control the gradient shade
-          type: "horizontal", // this can be 'horizontal' or 'vertical' to control the gradient direction
-          shadeIntensity: 0.5, // this controls the intensity of the gradient
-          gradientToColors: undefined, // you can specify an array of color codes here to control the gradient colors
+          shade: "light",
+          type: "horizontal",
+          shadeIntensity: 0.5,
+          gradientToColors: undefined,
           inverseColors: true,
           opacityFrom: 1,
           opacityTo: 1,
@@ -96,12 +88,24 @@ const CustomerReview = () => {
       },
       plotOptions: {
         bar: {
-          // the barWidth is a percentage. 100% means that the bars will occupy the whole space, while 50% means the bars will take up half the space
           barWidth: "50%",
         },
       },
     },
   });
+
+  // Update chart data when seriesData changes
+  useEffect(() => {
+    setData(oldData => ({
+      ...oldData,
+      series: [
+        {
+          name: 'Lesson',
+          data: seriesData,
+        }
+      ]
+    }));
+  }, [seriesData]);
 
   return (
     <div className="CustomerReview">

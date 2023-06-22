@@ -10,13 +10,11 @@ import Paper from "@mui/material/Paper";
 import TablePagination from "@mui/material/TablePagination";
 import "./table.css";
 import { getAccessToken } from "../../utils/auth";
-import { ChartDataContext } from "../../utils/chartDataContext";
+import ChartDataContext from "../../contexts/ChartDataContext";
 
 function createData(id, surname, name, pin) {
   return { id, surname, name, pin };
 }
-
-const rows = [];
 
 export default function BasicTable() {
   const [rows, setRows] = useState([]);
@@ -27,32 +25,27 @@ export default function BasicTable() {
 
   const { setChartData } = useContext(ChartDataContext);
 
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
   const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10)); // Fix the radix value from 5 to 10
+    setRowsPerPage(parseInt(event.target.value, 10)); 
     setPage(0);
   };
 
   const handleRowClick = async (row) => {
     setSelectedRow(row);
-    
     const response = await fetch(`http://localhost:8080/api/v1/lesson/weeklyCount?teacherId=${row.id}`, {
       headers: {
         Authorization: `Bearer ${getAccessToken()}`,
       },
     });
-    
     const data = await response.json();
-
     setChartData(data);
   };
 
   useEffect(() => {
-
     async function fetchData() {
       const response = await fetch(
         `http://localhost:8080/api/v1/teacher/list?page=${page}&size=${rowsPerPage}`,
@@ -72,16 +65,12 @@ export default function BasicTable() {
     }
 
     fetchData();
-  }, [getAccessToken(), page, rowsPerPage]);
+  }, [page, rowsPerPage]);
 
   return (
     <div className="Table">
       <h3>Teachers</h3>
-
-      <TableContainer
-        component={Paper}
-        style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
-      >
+      <TableContainer component={Paper} style={{ boxShadow: "0px 13px 20px 0px #80808029" }}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -93,13 +82,8 @@ export default function BasicTable() {
           </TableHead>
           <TableBody>
             {rows.map((row) => (
-              <TableRow
-                key={row.id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {row.surname}
-                </TableCell>
+              <TableRow key={row.id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                <TableCell component="th" scope="row">{row.surname}</TableCell>
                 <TableCell align="left">{row.name}</TableCell>
                 <TableCell align="left">{row.pin}</TableCell>
                 <TableCell align="left" className="Details" onClick={() => handleRowClick(row)}>
